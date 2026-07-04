@@ -13,19 +13,7 @@ const isActive = (href: string) =>
 <header class="nav">
   <div class="container nav__inner">
     <a href="/" class="nav__brand">
-      <span class="nav__mark" aria-hidden="true">
-        <svg viewBox="0 0 64 64" fill="none">
-          <rect width="64" height="64" rx="14" fill="#2563eb" />
-          <path
-            d="M20 20H44L20 44H44"
-            stroke="#ffffff"
-            stroke-width="6"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-        </svg>
-      </span>
-      Zesencia Technologies
+      <img src="/logo-horizontal.png" alt="Zesencia Technologies" class="nav__logo" />
     </a>
 
     <nav class="nav__links" aria-label="Primary">
@@ -60,24 +48,14 @@ const isActive = (href: string) =>
   .nav__brand {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
-    font-weight: 700;
-    font-size: 1.05rem;
     text-decoration: none;
-    color: var(--color-text);
     white-space: nowrap;
   }
 
-  .nav__mark {
-    display: inline-flex;
-    width: 28px;
-    height: 28px;
-    flex-shrink: 0;
-  }
-
-  .nav__mark svg {
-    width: 100%;
-    height: 100%;
+  .nav__logo {
+    height: 34px;
+    width: auto;
+    display: block;
   }
 
   .nav__links {
