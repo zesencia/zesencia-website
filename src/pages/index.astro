@@ -1,20 +1,29 @@
 ---
 import Layout from "../layouts/Layout.astro";
 
+const icon = (path: string) =>
+  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${path}</svg>`;
+
 const whatWeDo = [
   {
-    icon: "📱",
+    icon: icon(
+      '<rect x="7" y="2" width="10" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/>'
+    ),
     title: "Mobile Apps",
     description: "Beautiful, intuitive iOS applications designed for everyday use.",
   },
   {
-    icon: "☁️",
+    icon: icon(
+      '<path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>'
+    ),
     title: "Cloud Solutions",
     description:
       "Reliable cloud services and modern backend platforms built for performance and scalability.",
   },
   {
-    icon: "💡",
+    icon: icon(
+      '<polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>'
+    ),
     title: "Custom Software",
     description:
       "Tailored software solutions engineered with a focus on quality, maintainability, and long-term value.",
@@ -23,14 +32,21 @@ const whatWeDo = [
 
 const principles = [
   {
+    icon: icon('<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/>'),
     title: "Simplicity",
     description: "We believe software should feel effortless.",
   },
   {
+    icon: icon(
+      '<path d="M12 21s7-3.5 7-9V5l-7-3-7 3v7c0 5.5 7 9 7 9Z"/><path d="m9 12 2 2 4-4"/>'
+    ),
     title: "Reliability",
     description: "Every product is built with quality and long-term support in mind.",
   },
   {
+    icon: icon(
+      '<path d="M14.7 6.3a4 4 0 1 0-5.4 5.4L2 19l3 3 7.3-7.3a4 4 0 0 0 5.4-5.4l-2.8 2.8-2-2 2.8-2.8Z"/>'
+    ),
     title: "Craftsmanship",
     description: "Attention to detail matters—from user experience to code quality.",
   },
@@ -39,7 +55,8 @@ const principles = [
 
 <Layout title="Zesencia Technologies">
   <section class="section hero">
-    <div class="container hero__inner">
+    <div class="hero__bg" aria-hidden="true"></div>
+    <div class="container hero__inner" data-animate>
       <h1>Software with Purpose.<br />Technology with Elegance.</h1>
       <p class="hero__subtext">
         We design and build thoughtfully crafted mobile applications, cloud software, and
@@ -55,14 +72,14 @@ const principles = [
 
   <section class="section section--subtle">
     <div class="container">
-      <div class="text-center">
+      <div class="text-center" data-animate>
         <span class="eyebrow">What We Do</span>
         <h2>Focused on a few things, done well</h2>
       </div>
-      <div class="grid grid--3 what-we-do">
+      <div class="grid grid--3 what-we-do" data-animate-group>
         {whatWeDo.map((item) => (
           <div class="card">
-            <div class="card-icon">{item.icon}</div>
+            <div class="card-icon" set:html={item.icon} />
             <h3>{item.title}</h3>
             <p>{item.description}</p>
           </div>
@@ -73,13 +90,14 @@ const principles = [
 
   <section class="section">
     <div class="container">
-      <div class="text-center">
+      <div class="text-center" data-animate>
         <span class="eyebrow">Our Principles</span>
         <h2>What guides how we build</h2>
       </div>
-      <div class="grid grid--3 principles">
+      <div class="grid grid--3 principles" data-animate-group>
         {principles.map((principle) => (
-          <div class="principle">
+          <div class="card principle">
+            <div class="card-icon" set:html={principle.icon} />
             <h3>{principle.title}</h3>
             <p>{principle.description}</p>
           </div>
@@ -88,18 +106,37 @@ const principles = [
     </div>
   </section>
 
-  <section class="section cta">
-    <div class="container text-center">
-      <h2>Have an idea you'd like to bring to life?</h2>
-      <p>Let's build something great together.</p>
-      <a href="/contact" class="btn btn--primary">Contact Us</a>
+  <section class="section">
+    <div class="container">
+      <div class="cta" data-animate>
+        <h2>Have an idea you'd like to bring to life?</h2>
+        <p>Let's build something great together.</p>
+        <a href="/contact" class="btn btn--primary">Contact Us</a>
+      </div>
     </div>
   </section>
 </Layout>
 
 <style>
   .hero {
-    padding-block: 120px 96px;
+    position: relative;
+    padding-block: 88px 96px;
+    overflow: hidden;
+  }
+
+  .hero__bg {
+    position: absolute;
+    inset: -20% -10% auto -10%;
+    height: 640px;
+    background: radial-gradient(
+        520px circle at 18% 20%,
+        rgba(37, 99, 235, 0.14),
+        transparent 60%
+      ),
+      radial-gradient(480px circle at 82% 10%, rgba(37, 99, 235, 0.1), transparent 55%),
+      radial-gradient(600px circle at 50% 90%, rgba(37, 99, 235, 0.06), transparent 60%);
+    pointer-events: none;
+    z-index: -1;
   }
 
   .hero__inner {
@@ -108,14 +145,14 @@ const principles = [
   }
 
   .hero h1 {
-    font-size: clamp(2rem, 4vw, 3rem);
-    margin: 0 0 20px;
+    font-size: clamp(2.25rem, 5vw, 3.75rem);
+    margin: 0 0 28px;
   }
 
   .hero__subtext {
     font-size: 1.15rem;
     margin: 0 auto 36px;
-    max-width: 620px;
+    max-width: 580px;
   }
 
   .hero__actions {
@@ -128,11 +165,26 @@ const principles = [
 
   .principles {
     margin-top: 48px;
+  }
+
+  .principle {
     text-align: center;
+  }
+
+  .principle .card-icon {
+    margin-inline: auto;
   }
 
   .principle h3 {
     margin-bottom: 8px;
+  }
+
+  .cta {
+    text-align: center;
+    padding: 64px 40px;
+    border-radius: var(--radius-lg);
+    background: linear-gradient(180deg, var(--color-bg-subtle), #eef2ff);
+    border: 1px solid var(--color-border);
   }
 
   .cta h2 {

@@ -7,21 +7,17 @@ import Layout from "../layouts/Layout.astro";
   description="Get in touch with Zesencia Technologies. Email hello@zesencia.com."
 >
   <section class="section contact">
-    <div class="container text-center">
+    <div class="container text-center" data-animate>
       <span class="eyebrow">Contact</span>
       <h1>Let's talk</h1>
       <p class="contact__lead">
         Have a question or an idea you'd like to discuss? We'd love to hear from you.
       </p>
 
-      <div class="grid grid--2 contact__cards">
+      <div class="contact__cards">
         <div class="card">
           <h3>Email</h3>
           <p><a href="mailto:hello@zesencia.com">hello@zesencia.com</a></p>
-        </div>
-        <div class="card">
-          <h3>Location</h3>
-          <p>Frisco, Texas, USA</p>
         </div>
       </div>
     </div>
@@ -45,9 +41,17 @@ import Layout from "../layouts/Layout.astro";
   }
 
   .contact__cards {
-    max-width: 640px;
+    max-width: 380px;
     margin-inline: auto;
-    text-align: left;
+    text-align: center;
+  }
+
+  .contact__cards .card h3 {
+    margin: 0 0 8px;
+  }
+
+  .contact__cards .card p {
+    margin: 0;
   }
 
   .contact__cards a {
