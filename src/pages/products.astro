@@ -1,0 +1,36 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+  title="Products"
+  description="Zesencia Technologies is currently developing its first generation of applications. Stay tuned for updates."
+>
+  <section class="section products-empty">
+    <div class="container text-center">
+      <span class="eyebrow">Products</span>
+      <h1>Coming Soon</h1>
+      <p class="products-empty__body">
+        We're currently developing our first generation of applications. Stay tuned for updates.
+      </p>
+      <a href="/contact" class="btn btn--primary">Get in Touch</a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .products-empty {
+    padding-block: 140px;
+  }
+
+  .products-empty h1 {
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    margin: 0 0 16px;
+  }
+
+  .products-empty__body {
+    max-width: 520px;
+    margin: 0 auto 32px;
+    font-size: 1.1rem;
+  }
+</style>

@@ -1,0 +1,92 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__brand">
+      <p class="footer__title">Zesencia Technologies</p>
+      <p class="footer__tagline">Software &bull; Mobile Apps &bull; Cloud Solutions</p>
+    </div>
+
+    <nav class="footer__links" aria-label="Footer">
+      <a href="/products">Products</a>
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
+      <a href="/privacy">Privacy Policy</a>
+      <a href="/terms">Terms of Use</a>
+    </nav>
+
+    <div class="footer__meta">
+      <p><a href="mailto:hello@zesencia.com">hello@zesencia.com</a></p>
+      <p>&copy; {year} Zesencia Technologies</p>
+      <p class="footer__legal">Zesencia Technologies is operated by Sublime Trade LLC.</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    border-top: 1px solid var(--color-border);
+    background: var(--color-bg-subtle);
+  }
+
+  .footer__inner {
+    padding-block: 56px;
+    display: grid;
+    gap: 32px;
+    grid-template-columns: 1.2fr 1fr 1fr;
+  }
+
+  .footer__title {
+    font-weight: 700;
+    color: var(--color-text);
+    margin: 0 0 8px;
+  }
+
+  .footer__tagline {
+    margin: 0;
+    font-size: 0.9rem;
+  }
+
+  .footer__links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .footer__links a {
+    text-decoration: none;
+    color: var(--color-text-secondary);
+    font-size: 0.9rem;
+  }
+
+  .footer__links a:hover {
+    color: var(--color-accent);
+  }
+
+  .footer__meta p {
+    margin: 0 0 8px;
+    font-size: 0.9rem;
+  }
+
+  .footer__meta a {
+    text-decoration: none;
+    color: var(--color-text-secondary);
+  }
+
+  .footer__meta a:hover {
+    color: var(--color-accent);
+  }
+
+  .footer__legal {
+    color: #94a3b8;
+    font-size: 0.8rem;
+  }
+
+  @media (max-width: 720px) {
+    .footer__inner {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
