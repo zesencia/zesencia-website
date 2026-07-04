@@ -1,0 +1,61 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+  title="Contact"
+  description="Get in touch with Zesencia Technologies. Email hello@zesencia.com."
+>
+  <section class="section contact">
+    <div class="container text-center">
+      <span class="eyebrow">Contact</span>
+      <h1>Let's talk</h1>
+      <p class="contact__lead">
+        Have a question or an idea you'd like to discuss? We'd love to hear from you.
+      </p>
+
+      <div class="grid grid--2 contact__cards">
+        <div class="card">
+          <h3>Email</h3>
+          <p><a href="mailto:hello@zesencia.com">hello@zesencia.com</a></p>
+        </div>
+        <div class="card">
+          <h3>Location</h3>
+          <p>Frisco, Texas, USA</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .contact {
+    padding-block: 120px;
+  }
+
+  .contact h1 {
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    margin: 0 0 16px;
+  }
+
+  .contact__lead {
+    max-width: 520px;
+    margin: 0 auto 40px;
+    font-size: 1.1rem;
+  }
+
+  .contact__cards {
+    max-width: 640px;
+    margin-inline: auto;
+    text-align: left;
+  }
+
+  .contact__cards a {
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+
+  .contact__cards a:hover {
+    text-decoration: underline;
+  }
+</style>

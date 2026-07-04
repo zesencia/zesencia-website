@@ -1,0 +1,74 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const focusAreas = [
+  {
+    title: "Mobile Applications",
+    description: "Native iOS experiences built with care for detail and everyday usability.",
+  },
+  {
+    title: "Cloud Services",
+    description: "Scalable backend platforms and infrastructure that stay reliable as you grow.",
+  },
+  {
+    title: "AI-assisted Solutions",
+    description: "Practical applications of AI that make products smarter without adding friction.",
+  },
+  {
+    title: "Developer Tools",
+    description: "Software that helps engineering teams move faster and build with confidence.",
+  },
+];
+---
+
+<Layout
+  title="About"
+  description="Zesencia Technologies creates thoughtfully designed software that combines elegant user experiences with dependable engineering."
+>
+  <section class="section about-intro">
+    <div class="container">
+      <span class="eyebrow">About</span>
+      <h1>Building software that earns your trust</h1>
+      <p class="about-intro__lead">
+        Zesencia Technologies creates thoughtfully designed software that combines elegant user
+        experiences with dependable engineering. Our mission is to build products that solve real
+        problems through simplicity, innovation, and quality.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--subtle">
+    <div class="container">
+      <h2>Areas of Focus</h2>
+      <div class="grid grid--2 focus-grid">
+        {focusAreas.map((area) => (
+          <div class="card">
+            <h3>{area.title}</h3>
+            <p>{area.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .about-intro {
+    padding-block: 96px 64px;
+  }
+
+  .about-intro h1 {
+    font-size: clamp(1.9rem, 3.5vw, 2.6rem);
+    max-width: 700px;
+    margin: 0 0 20px;
+  }
+
+  .about-intro__lead {
+    font-size: 1.1rem;
+    max-width: 640px;
+  }
+
+  .focus-grid {
+    margin-top: 32px;
+  }
+</style>
