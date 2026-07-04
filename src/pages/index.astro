@@ -4,6 +4,8 @@ import Layout from "../layouts/Layout.astro";
 const icon = (path: string) =>
   `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${path}</svg>`;
 
+const arrowIcon = icon('<line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>');
+
 const whatWeDo = [
   {
     icon: icon(
@@ -11,6 +13,7 @@ const whatWeDo = [
     ),
     title: "Mobile Apps",
     description: "Beautiful, intuitive iOS applications designed for everyday use.",
+    features: ["Native iOS development", "Intuitive user experience", "Built for everyday use"],
   },
   {
     icon: icon(
@@ -19,6 +22,7 @@ const whatWeDo = [
     title: "Cloud Solutions",
     description:
       "Reliable cloud services and modern backend platforms built for performance and scalability.",
+    features: ["Scalable architecture", "Built for reliability", "Performance-focused"],
   },
   {
     icon: icon(
@@ -27,6 +31,7 @@ const whatWeDo = [
     title: "Custom Software",
     description:
       "Tailored software solutions engineered with a focus on quality, maintainability, and long-term value.",
+    features: ["Tailored to your needs", "Quality-first engineering", "Built for the long term"],
   },
 ];
 
@@ -82,13 +87,22 @@ const principles = [
             <div class="card-icon" set:html={item.icon} />
             <h3>{item.title}</h3>
             <p>{item.description}</p>
+            <ul class="card__features">
+              {item.features.map((feature) => (
+                <li>{feature}</li>
+              ))}
+            </ul>
+            <a href="/contact" class="card__link">
+              Learn More
+              <Fragment set:html={arrowIcon} />
+            </a>
           </div>
         ))}
       </div>
     </div>
   </section>
 
-  <section class="section">
+  <section class="section section--tint">
     <div class="container">
       <div class="text-center" data-animate>
         <span class="eyebrow">Our Principles</span>
@@ -173,10 +187,6 @@ const principles = [
 
   .principle .card-icon {
     margin-inline: auto;
-  }
-
-  .principle h3 {
-    margin-bottom: 8px;
   }
 
   .cta {

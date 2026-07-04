@@ -4,6 +4,8 @@ import Layout from "../layouts/Layout.astro";
 const icon = (path: string) =>
   `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${path}</svg>`;
 
+const arrowIcon = icon('<line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>');
+
 const focusAreas = [
   {
     icon: icon(
@@ -11,25 +13,29 @@ const focusAreas = [
     ),
     title: "Mobile Applications",
     description: "Native iOS experiences built with care for detail and everyday usability.",
+    features: ["Native iOS development", "Everyday usability", "Careful attention to detail"],
   },
   {
     icon: icon('<path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>'),
     title: "Cloud Services",
     description: "Scalable backend platforms and infrastructure that stay reliable as you grow.",
+    features: ["Scalable infrastructure", "Reliable as you grow", "Modern backend platforms"],
   },
   {
     icon: icon(
       '<path d="M12 2a7 7 0 0 0-4 12.7V17a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-2.3A7 7 0 0 0 12 2Z"/><path d="M9 21h6"/>'
     ),
-    title: "AI-assisted Solutions",
+    title: "AI Solutions",
     description: "Practical applications of AI that make products smarter without adding friction.",
+    features: ["Practical AI integration", "Smarter, not more complex", "Human-centered design"],
   },
   {
     icon: icon(
-      '<polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>'
+      '<rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>'
     ),
-    title: "Developer Tools",
-    description: "Software that helps engineering teams move faster and build with confidence.",
+    title: "Enterprise Applications",
+    description: "Custom Java applications and business web applications built for enterprise workflows.",
+    features: ["Java application development", "Business web applications", "Built for enterprise workflows"],
   },
 ];
 ---
@@ -59,6 +65,15 @@ const focusAreas = [
             <div class="card-icon" set:html={area.icon} />
             <h3>{area.title}</h3>
             <p>{area.description}</p>
+            <ul class="card__features">
+              {area.features.map((feature) => (
+                <li>{feature}</li>
+              ))}
+            </ul>
+            <a href="/contact" class="card__link">
+              Learn More
+              <Fragment set:html={arrowIcon} />
+            </a>
           </div>
         ))}
       </div>
