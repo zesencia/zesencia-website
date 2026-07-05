@@ -13,12 +13,25 @@ const isActive = (href: string) =>
 <header class="nav">
   <div class="container nav__inner">
     <a href="/" class="nav__brand">
-      <img src="/logo-horizontal.png" alt="Zesencia Technologies" class="nav__logo" />
+      <img
+        src="/logo-horizontal.png"
+        alt="Zesencia Technologies — Home"
+        class="nav__logo"
+        width="434"
+        height="129"
+        fetchpriority="high"
+      />
     </a>
 
     <nav class="nav__links" aria-label="Primary">
       {navLinks.map((link) => (
-        <a href={link.href} class={isActive(link.href) ? "is-active" : ""}>{link.label}</a>
+        <a
+          href={link.href}
+          class={isActive(link.href) ? "is-active" : ""}
+          aria-current={isActive(link.href) ? "page" : undefined}
+        >
+          {link.label}
+        </a>
       ))}
     </nav>
 

@@ -58,6 +58,25 @@ const principles = [
     description: "Attention to detail matters—from user experience to code quality.",
   },
 ];
+
+const process = [
+  {
+    title: "Discover",
+    description: "We start by understanding the problem, your goals, and who you're building for.",
+  },
+  {
+    title: "Design",
+    description: "We shape the experience first—clear flows, clean interfaces, no unnecessary complexity.",
+  },
+  {
+    title: "Build",
+    description: "We engineer with quality and maintainability in mind, keeping you involved at every step.",
+  },
+  {
+    title: "Support",
+    description: "Launch is the beginning. We stay engaged to refine, improve, and support what we ship.",
+  },
+];
 ---
 
 <Layout title="Zesencia Technologies">
@@ -119,6 +138,24 @@ const principles = [
           </div>
         ))}
       </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="text-center" data-animate>
+        <span class="eyebrow">How We Work</span>
+        <h2>From idea to launch, step by step</h2>
+      </div>
+      <ol class="process" data-animate-group>
+        {process.map((step, index) => (
+          <li class="process__step">
+            <span class="process__number">{index + 1}</span>
+            <h3>{step.title}</h3>
+            <p>{step.description}</p>
+          </li>
+        ))}
+      </ol>
     </div>
   </section>
 
@@ -189,6 +226,55 @@ const principles = [
 
   .principle .card-icon {
     margin-inline: auto;
+  }
+
+  .process {
+    list-style: none;
+    margin: 48px 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+
+  .process__step {
+    position: relative;
+    padding: 28px 24px 0;
+    border-top: 2px solid var(--color-border);
+  }
+
+  .process__number {
+    position: absolute;
+    top: -17px;
+    left: 24px;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-full);
+    background: var(--color-accent-tint);
+    color: var(--color-accent);
+    font-weight: 700;
+    font-size: 0.9rem;
+    border: 2px solid var(--color-border);
+  }
+
+  .process__step h3 {
+    margin: 0 0 8px;
+    font-size: 1.1rem;
+  }
+
+  .process__step p {
+    margin: 0;
+    font-size: 0.95rem;
+  }
+
+  @media (max-width: 860px) {
+    .process {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
   }
 
   .cta {

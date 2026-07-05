@@ -1,5 +1,38 @@
 ---
 import Layout from "../layouts/Layout.astro";
+
+const faqs = [
+  {
+    question: "What kind of projects do you take on?",
+    answer:
+      "We design and build iOS applications, cloud services and backend platforms, custom business software, and practical AI-assisted solutions. If you're not sure whether your idea fits, just ask—we'll tell you honestly.",
+  },
+  {
+    question: "How do we get started?",
+    answer:
+      "Send us a message describing your idea or problem. We'll set up a conversation to understand your goals, then follow up with a clear proposal covering scope, timeline, and cost.",
+  },
+  {
+    question: "Do you work with clients remotely?",
+    answer:
+      "Yes. We're based in Texas, USA and work with clients remotely. Most collaboration happens over email and video calls.",
+  },
+  {
+    question: "How quickly do you respond?",
+    answer:
+      "We typically reply to new inquiries within one to two business days.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: { "@type": "Answer", text: faq.answer },
+  })),
+};
 ---
 
 <Layout
@@ -43,12 +76,31 @@ import Layout from "../layouts/Layout.astro";
         </form>
 
         <div class="card contact-alt">
-          <h3>Prefer email?</h3>
+          <h2>Prefer email?</h2>
           <p><a href="mailto:hello@zesencia.com">hello@zesencia.com</a></p>
         </div>
       </div>
     </div>
   </section>
+
+  <section class="section section--subtle">
+    <div class="container faq">
+      <div class="text-center" data-animate>
+        <span class="eyebrow">FAQ</span>
+        <h2>Common questions</h2>
+      </div>
+      <div class="faq__list" data-animate-group>
+        {faqs.map((faq) => (
+          <details class="faq__item">
+            <summary>{faq.question}</summary>
+            <p>{faq.answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 </Layout>
 
 <script>
@@ -179,8 +231,9 @@ import Layout from "../layouts/Layout.astro";
     text-align: center;
   }
 
-  .contact-alt h3 {
+  .contact-alt h2 {
     margin: 0 0 8px;
+    font-size: 1.15rem;
   }
 
   .contact-alt p {
@@ -194,6 +247,37 @@ import Layout from "../layouts/Layout.astro";
 
   .contact-alt a:hover {
     text-decoration: underline;
+  }
+
+  .faq__list {
+    max-width: 720px;
+    margin: 40px auto 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .faq__item {
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 18px 22px;
+    transition: border-color 0.15s ease;
+  }
+
+  .faq__item[open] {
+    border-color: var(--color-accent);
+  }
+
+  .faq__item summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--color-text);
+    list-style-position: outside;
+  }
+
+  .faq__item p {
+    margin: 12px 0 0;
   }
 
   @media (max-width: 720px) {
