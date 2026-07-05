@@ -7,22 +7,88 @@ import Layout from "../layouts/Layout.astro";
   description="Get in touch with Zesencia Technologies. Email hello@zesencia.com."
 >
   <section class="section contact">
-    <div class="container text-center" data-animate>
-      <span class="eyebrow">Contact</span>
-      <h1>Let's talk</h1>
-      <p class="contact__lead">
-        Have a question or an idea you'd like to discuss? We'd love to hear from you.
-      </p>
+    <div class="container">
+      <div class="text-center" data-animate>
+        <span class="eyebrow">Contact</span>
+        <h1>Let's talk</h1>
+        <p class="contact__lead">
+          Have a question or an idea you'd like to discuss? We'd love to hear from you.
+        </p>
+      </div>
 
-      <div class="contact__cards">
-        <div class="card">
-          <h3>Email</h3>
+      <div class="contact__layout" data-animate>
+        <form class="card contact-form" id="contact-form">
+          <input type="hidden" name="access_key" value="7843b8b0-9de5-42d2-8817-12e31f1bd958" />
+          <input type="hidden" name="subject" value="New message from zesencia.com" />
+          <input type="checkbox" name="botcheck" class="contact-form__honeypot" tabindex="-1" autocomplete="off" />
+
+          <div class="form-field">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required />
+          </div>
+
+          <div class="form-field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required />
+          </div>
+
+          <div class="form-field">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+          </div>
+
+          <button type="submit" class="btn btn--primary contact-form__submit">Send Message</button>
+
+          <p class="contact-form__status" role="status" aria-live="polite"></p>
+        </form>
+
+        <div class="card contact-alt">
+          <h3>Prefer email?</h3>
           <p><a href="mailto:hello@zesencia.com">hello@zesencia.com</a></p>
         </div>
       </div>
     </div>
   </section>
 </Layout>
+
+<script>
+  const form = document.getElementById("contact-form") as HTMLFormElement | null;
+  const statusEl = form?.querySelector(".contact-form__status") as HTMLElement | null;
+  const submitBtn = form?.querySelector(".contact-form__submit") as HTMLButtonElement | null;
+
+  form?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    if (!submitBtn || !statusEl) return;
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Sending...";
+    statusEl.textContent = "";
+    statusEl.className = "contact-form__status";
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: new FormData(form),
+      });
+      const result = await response.json();
+
+      if (result.success) {
+        statusEl.textContent = "Thanks — we'll be in touch soon.";
+        statusEl.className = "contact-form__status contact-form__status--success";
+        form.reset();
+      } else {
+        throw new Error(result.message || "Something went wrong.");
+      }
+    } catch (err) {
+      statusEl.textContent = "Something went wrong. Please try again or email us directly.";
+      statusEl.className = "contact-form__status contact-form__status--error";
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Send Message";
+    }
+  });
+</script>
 
 <style>
   .contact {
@@ -40,26 +106,99 @@ import Layout from "../layouts/Layout.astro";
     font-size: 1.1rem;
   }
 
-  .contact__cards {
-    max-width: 380px;
+  .contact__layout {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 24px;
+    align-items: start;
+    max-width: 800px;
     margin-inline: auto;
+    text-align: left;
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .contact-form__honeypot {
+    display: none;
+  }
+
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .form-field label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  .form-field input,
+  .form-field textarea {
+    font: inherit;
+    color: var(--color-text);
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 12px 14px;
+    resize: vertical;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .form-field input:focus,
+  .form-field textarea:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px var(--color-accent-tint);
+  }
+
+  .contact-form__submit {
+    align-self: flex-start;
+  }
+
+  .contact-form__status {
+    margin: 0;
+    font-size: 0.9rem;
+    min-height: 1.2em;
+  }
+
+  .contact-form__status--success {
+    color: #16a34a;
+  }
+
+  .contact-form__status--error {
+    color: #dc2626;
+  }
+
+  .contact-alt {
     text-align: center;
   }
 
-  .contact__cards .card h3 {
+  .contact-alt h3 {
     margin: 0 0 8px;
   }
 
-  .contact__cards .card p {
+  .contact-alt p {
     margin: 0;
   }
 
-  .contact__cards a {
+  .contact-alt a {
     color: var(--color-accent);
     text-decoration: none;
   }
 
-  .contact__cards a:hover {
+  .contact-alt a:hover {
     text-decoration: underline;
+  }
+
+  @media (max-width: 720px) {
+    .contact__layout {
+      grid-template-columns: 1fr;
+    }
   }
 </style>
