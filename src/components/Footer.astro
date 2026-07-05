@@ -14,7 +14,8 @@ const year = new Date().getFullYear();
         loading="lazy"
         decoding="async"
       />
-      <p class="footer__tagline">Software &bull; Mobile Apps &bull; Cloud Solutions</p>
+      <p class="footer__tagline">Software with Purpose. Technology with Elegance.</p>
+      <p class="footer__legal">A software brand operated by Sublime Trade LLC.</p>
     </div>
 
     <nav class="footer__links" aria-label="Footer">
@@ -27,8 +28,13 @@ const year = new Date().getFullYear();
 
     <div class="footer__meta">
       <p><a href="mailto:hello@zesencia.com">hello@zesencia.com</a></p>
-      <p>&copy; {year} Zesencia Technologies</p>
-      <p class="footer__legal">Zesencia Technologies is operated by Sublime Trade LLC.</p>
+      <p>Frisco, Texas, USA</p>
+    </div>
+  </div>
+
+  <div class="footer__bottom">
+    <div class="container">
+      <p>&copy; {year} Zesencia Technologies. All rights reserved.</p>
     </div>
   </div>
 </footer>
@@ -42,8 +48,8 @@ const year = new Date().getFullYear();
   .footer__inner {
     padding-block: 56px;
     display: grid;
-    gap: 32px;
-    grid-template-columns: 1.2fr 1fr 1fr;
+    gap: 40px;
+    grid-template-columns: 1.8fr 1fr 1fr;
   }
 
   .footer__logo {
@@ -54,8 +60,10 @@ const year = new Date().getFullYear();
   }
 
   .footer__tagline {
-    margin: 0;
+    margin: 0 0 8px;
     font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-text);
   }
 
   .footer__links {
@@ -89,8 +97,20 @@ const year = new Date().getFullYear();
   }
 
   .footer__legal {
+    margin: 0;
     color: #64748b;
     font-size: 0.8rem;
+  }
+
+  .footer__bottom {
+    border-top: 1px solid var(--color-border);
+    padding-block: 20px;
+  }
+
+  .footer__bottom p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: #64748b;
   }
 
   @media (max-width: 720px) {

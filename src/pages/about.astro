@@ -67,6 +67,37 @@ const focusAreas = [
           {" "}<a href="mailto:hello@zesencia.com">hello@zesencia.com</a>.
         </p>
       </div>
+
+      <dl class="about-pillars">
+        <div class="about-pillars__item">
+          <dt>Our Mission</dt>
+          <dd>
+            To build products that solve real problems through simplicity, innovation, and
+            quality—software that makes everyday life genuinely easier.
+          </dd>
+        </div>
+        <div class="about-pillars__item">
+          <dt>Engineering Philosophy</dt>
+          <dd>
+            We engineer for the long term: clean architecture, maintainable code, and technology
+            choices made for durability rather than trends.
+          </dd>
+        </div>
+        <div class="about-pillars__item">
+          <dt>Quality Commitment</dt>
+          <dd>
+            Everything we ship is tested, polished, and held to a high standard. We would rather
+            release fewer things done well than many things done halfway.
+          </dd>
+        </div>
+        <div class="about-pillars__item">
+          <dt>Customers First</dt>
+          <dd>
+            From the first conversation to long after launch, we listen, communicate clearly, and
+            treat every customer's goals as our own.
+          </dd>
+        </div>
+      </dl>
     </div>
   </section>
 
@@ -132,6 +163,33 @@ const focusAreas = [
 
   .about-story a:hover {
     text-decoration: underline;
+  }
+
+  .about-pillars {
+    margin: 48px 0 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px 40px;
+    max-width: 880px;
+  }
+
+  .about-pillars__item dt {
+    font-weight: 700;
+    color: var(--color-heading);
+    margin-bottom: 6px;
+  }
+
+  .about-pillars__item dd {
+    margin: 0;
+    color: var(--color-text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 720px) {
+    .about-pillars {
+      grid-template-columns: 1fr;
+    }
   }
 
   .focus-grid {

@@ -24,6 +24,12 @@ const organizationSchema = {
   url: Astro.site?.toString(),
   logo: new URL("/logo-horizontal.png", Astro.site).toString(),
   email: "hello@zesencia.com",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Frisco",
+    addressRegion: "TX",
+    addressCountry: "US",
+  },
   description:
     "Zesencia Technologies designs and builds thoughtfully crafted mobile applications, cloud software, and intelligent digital experiences.",
   parentOrganization: {
