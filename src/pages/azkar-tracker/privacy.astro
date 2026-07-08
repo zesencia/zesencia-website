@@ -1,0 +1,99 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const lastUpdated = "July 8, 2026";
+---
+
+<Layout
+  title="Azkar Tracker Privacy Policy"
+  description="Privacy Policy for the Azkar Tracker iOS app. Azkar Tracker collects no data — everything stays on your device."
+>
+  <section class="section legal">
+    <div class="container legal__container">
+      <span class="eyebrow">Privacy Policy</span>
+      <h1>Azkar Tracker Privacy Policy</h1>
+      <p class="legal__updated">Last updated: {lastUpdated}</p>
+
+      <p>
+        Azkar Tracker is built by Zesencia Technologies. This policy is simple because the
+        app is simple: <strong>Azkar Tracker does not collect, transmit, or share any of
+        your data. Everything stays on your device.</strong>
+      </p>
+
+      <h2>What We Collect</h2>
+      <p>
+        Nothing. Azkar Tracker has no accounts, no analytics, no tracking, no advertising,
+        and no third-party SDKs. The app works entirely offline and never sends any
+        information off your device.
+      </p>
+
+      <h2>Data Stored on Your Device</h2>
+      <p>
+        Your zikr counts, streaks, goals, reminders, and settings are stored locally on your
+        device only. This data is included in your personal device backups (such as iCloud
+        or iTunes backups) under your control, and we have no access to it.
+      </p>
+
+      <h2>Location</h2>
+      <p>
+        If you enable prayer-time reminders, the app may ask for permission to use your
+        location. Your location is used only on your device to calculate prayer times with a
+        built-in solar calculator — it is never transmitted anywhere, and no internet
+        connection is used or required. This permission is optional; the app works fully
+        without it.
+      </p>
+
+      <h2>Notifications</h2>
+      <p>
+        Reminders are scheduled locally on your device using the system notification
+        service. No notification data leaves your device.
+      </p>
+
+      <h2>Deleting Your Data</h2>
+      <p>
+        Deleting the app deletes all of its data. There is nothing stored anywhere else.
+      </p>
+
+      <h2>Children's Privacy</h2>
+      <p>
+        Because the app collects no data from anyone, it collects no data from children.
+      </p>
+
+      <h2>Changes to This Policy</h2>
+      <p>
+        If a future version of the app ever changes how data is handled, we will update this
+        page and the "Last updated" date above before that version is released.
+      </p>
+
+      <h2>Contact Us</h2>
+      <p>
+        If you have questions about this Privacy Policy, please contact us at
+        {" "}<a href="mailto:hello@zesencia.com">hello@zesencia.com</a>.
+      </p>
+      <p>Zesencia Technologies is operated by Sublime Trade LLC.</p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .legal {
+    padding-block: 96px 120px;
+  }
+
+  .legal__container {
+    max-width: 720px;
+  }
+
+  .legal h1 {
+    margin: 0 0 4px;
+  }
+
+  .legal__updated {
+    margin-bottom: 32px;
+    font-size: 0.9rem;
+  }
+
+  .legal a {
+    color: var(--color-accent);
+  }
+</style>
