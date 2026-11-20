@@ -4,16 +4,17 @@ import Layout from "../layouts/Layout.astro";
 const icon = (path: string) =>
   `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${path}</svg>`;
 
-const products = [
-  {
-    icon: icon(
-      '<path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>'
-    ),
-    title: "Azkar",
-    status: "Coming Soon",
-    description:
-      "A beautifully simple iOS app for daily remembrance—thoughtfully designed to fit naturally into your day. Our first application, currently in development.",
-  },
+const appStoreUrl = "https://apps.apple.com/app/id6834831413";
+
+const azkarFeatures = [
+  "Ready-made library of daily, morning & evening, weekly and monthly adhkar, plus Tasbeeh Fatima and duas",
+  "Reminders at a set time or linked to prayer times, calculated offline",
+  "Streaks, a 14-day chart and achievements to keep your practice consistent",
+  "iCloud sync across iPhone and iPad, and a home-screen widget",
+  "Private by design — no accounts, no tracking, nothing collected",
+];
+
+const upcoming = [
   {
     icon: icon(
       '<rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>'
@@ -37,27 +38,61 @@ const products = [
 
 <Layout
   title="Products"
-  description="Our first products are currently in development, starting with Azkar for iOS—with focused productivity apps and practical AI tools to follow."
+  description="Azkar Tracker, our first app, is available now on the App Store for iPhone and iPad—with focused productivity apps and practical AI tools to follow."
 >
   <section class="section products-intro">
     <div class="container text-center" data-animate>
       <span class="eyebrow">Products</span>
-      <h1>Our first products are currently in development</h1>
+      <h1>Our first app is live on the App Store</h1>
       <p class="products-intro__body">
-        We're building our first generation of applications with the same care we'd want in the
-        software we use every day. Here's a look at what's coming.
+        We build software with the same care we'd want in the apps we use every day. Azkar Tracker
+        is available now, with more on the way.
       </p>
     </div>
   </section>
 
   <section class="section section--subtle">
     <div class="container">
-      <div class="grid grid--3 products-grid" data-animate-group>
-        {products.map((product) => (
+      <article class="card featured" data-animate>
+        <img
+          class="featured__icon"
+          src="/azkar-tracker-icon.png"
+          alt="Azkar Tracker app icon"
+          width="128"
+          height="128"
+          loading="eager"
+        />
+        <div class="featured__body">
+          <div class="product__heading">
+            <h2>Azkar Tracker</h2>
+            <span class="product__status product__status--live">Available Now</span>
+          </div>
+          <p class="featured__tagline">Zikr &amp; tasbih counter for iPhone and iPad</p>
+          <p>
+            A beautifully simple app for daily remembrance. Count your tasbih, keep up with your
+            morning and evening adhkar, and build a consistent practice—with reminders tied to
+            prayer times and streaks that keep you going.
+          </p>
+          <ul class="featured__list">
+            {azkarFeatures.map((feature) => <li>{feature}</li>)}
+          </ul>
+          <div class="featured__actions">
+            <a href={appStoreUrl} class="btn btn--primary" target="_blank" rel="noopener">
+              Download on the App Store
+            </a>
+            <a href="/azkar-tracker/privacy" class="btn btn--secondary">Privacy Policy</a>
+          </div>
+          <p class="featured__meta">Free · Requires iOS 17 or later</p>
+        </div>
+      </article>
+
+      <h2 class="upcoming__title text-center" data-animate>What's next</h2>
+      <div class="grid grid--2 products-grid" data-animate-group>
+        {upcoming.map((product) => (
           <div class="card product">
             <div class="card-icon" set:html={product.icon} />
             <div class="product__heading">
-              <h2>{product.title}</h2>
+              <h3>{product.title}</h3>
               <span class="product__status">{product.status}</span>
             </div>
             <p>{product.description}</p>
@@ -65,7 +100,7 @@ const products = [
         ))}
       </div>
       <div class="text-center products-cta" data-animate>
-        <p>Want to be the first to know when we launch?</p>
+        <p>Want to hear when our next app launches?</p>
         <a href="/contact" class="btn btn--primary">Get in Touch</a>
       </div>
     </div>
@@ -89,6 +124,56 @@ const products = [
     font-size: 1.1rem;
   }
 
+  .featured {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+  }
+
+  .featured__icon {
+    flex-shrink: 0;
+    width: 128px;
+    height: 128px;
+    border-radius: 28px;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.15);
+  }
+
+  .featured__body {
+    min-width: 0;
+  }
+
+  .featured__tagline {
+    margin: 0 0 16px;
+    font-weight: 600;
+    color: var(--color-heading);
+  }
+
+  .featured__list {
+    margin: 20px 0 28px;
+    padding-left: 20px;
+    color: var(--color-text-secondary);
+  }
+
+  .featured__list li {
+    margin-bottom: 8px;
+  }
+
+  .featured__actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .featured__meta {
+    margin: 16px 0 0;
+    font-size: 0.9rem;
+  }
+
+  .upcoming__title {
+    margin: 72px 0 32px;
+    font-size: 1.5rem;
+  }
+
   .product__heading {
     display: flex;
     align-items: center;
@@ -97,9 +182,14 @@ const products = [
     margin-bottom: 12px;
   }
 
-  .product__heading h2 {
+  .product__heading h2,
+  .product__heading h3 {
     margin: 0;
     font-size: 1.25rem;
+  }
+
+  .featured .product__heading h2 {
+    font-size: 1.75rem;
   }
 
   .product__status {
@@ -114,6 +204,12 @@ const products = [
     white-space: nowrap;
   }
 
+  .product__status--live {
+    color: #047857;
+    background: #ecfdf5;
+    border-color: #a7f3d0;
+  }
+
   .products-cta {
     margin-top: 56px;
   }
@@ -121,5 +217,18 @@ const products = [
   .products-cta p {
     margin: 0 0 20px;
     font-size: 1.05rem;
+  }
+
+  @media (max-width: 860px) {
+    .featured {
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .featured__icon {
+      width: 96px;
+      height: 96px;
+      border-radius: 22px;
+    }
   }
 </style>
