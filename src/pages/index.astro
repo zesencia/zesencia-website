@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { azkarAppStoreUrl } from "../data/apps";
 
 const icon = (path: string) =>
   `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${path}</svg>`;
@@ -83,6 +84,11 @@ const process = [
   <section class="section hero">
     <div class="hero__bg" aria-hidden="true"></div>
     <div class="container hero__inner" data-animate>
+      <a href="/products" class="hero__announce">
+        <span class="hero__announce-tag">New</span>
+        Azkar Tracker is now on the App Store
+        <Fragment set:html={arrowIcon} />
+      </a>
       <h1>Software with Purpose.<br />Technology with Elegance.</h1>
       <p class="hero__subtext">
         We design and build thoughtfully crafted mobile applications, cloud software, and
@@ -92,6 +98,37 @@ const process = [
       <div class="stack text-center hero__actions">
         <a href="/products" class="btn btn--primary">Explore Products</a>
         <a href="/contact" class="btn btn--secondary">Contact Us</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section featured-app">
+    <div class="container">
+      <div class="featured-app__inner" data-animate>
+        <a href={azkarAppStoreUrl} class="featured-app__banner" target="_blank" rel="noopener">
+          <img
+            src="/azkar-tracker-banner.jpg"
+            alt="Azkar Tracker: Zikr & Tasbih — Download on the App Store"
+            width="1280"
+            height="720"
+            loading="lazy"
+          />
+        </a>
+        <div>
+          <span class="eyebrow">Our First App</span>
+          <h2>Azkar Tracker</h2>
+          <p>
+            A beautifully simple zikr and tasbih counter for iPhone and iPad. Keep up with your
+            daily and morning &amp; evening adhkar, get reminders tied to prayer times, and build a
+            consistent practice—privately, with iCloud sync across your devices.
+          </p>
+          <div class="stack featured-app__actions">
+            <a href={azkarAppStoreUrl} class="btn btn--primary" target="_blank" rel="noopener">
+              Download on the App Store
+            </a>
+            <a href="/products" class="btn btn--secondary">Learn More</a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -210,6 +247,85 @@ const process = [
 
   .hero__actions {
     justify-content: center;
+  }
+
+  .hero__announce {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 28px;
+    padding: 6px 14px 6px 6px;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--color-accent-tint-strong);
+    background: var(--color-bg);
+    color: var(--color-heading);
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: border-color 0.15s ease;
+  }
+
+  .hero__announce:hover {
+    border-color: var(--color-accent);
+  }
+
+  .hero__announce-tag {
+    padding: 2px 10px;
+    border-radius: var(--radius-full);
+    background: var(--color-accent);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  .hero__announce :global(svg) {
+    width: 16px;
+    height: 16px;
+    color: var(--color-accent);
+  }
+
+  .featured-app {
+    padding-top: 0;
+  }
+
+  .featured-app__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    gap: 48px;
+    align-items: center;
+  }
+
+  .featured-app__inner h2 {
+    margin: 8px 0 16px;
+  }
+
+  .featured-app__inner p {
+    margin: 0 0 28px;
+  }
+
+  .featured-app__banner {
+    display: block;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
+    transition: transform 0.2s ease;
+  }
+
+  .featured-app__banner:hover {
+    transform: translateY(-2px);
+  }
+
+  .featured-app__banner img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  @media (max-width: 860px) {
+    .featured-app__inner {
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
   }
 
   .what-we-do {
