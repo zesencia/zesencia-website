@@ -39,6 +39,7 @@ const upcoming = [
 <Layout
   title="Products"
   description="Azkar Tracker, our first app, is available now on the App Store for iPhone and iPad—with focused productivity apps and practical AI tools to follow."
+  ogImage="/azkar-tracker-og.jpg"
 >
   <section class="section products-intro">
     <div class="container text-center" data-animate>
@@ -54,14 +55,15 @@ const upcoming = [
   <section class="section section--subtle">
     <div class="container">
       <article class="card featured" data-animate>
-        <img
-          class="featured__icon"
-          src="/azkar-tracker-icon.png"
-          alt="Azkar Tracker app icon"
-          width="128"
-          height="128"
-          loading="eager"
-        />
+        <a href={appStoreUrl} class="featured__banner" target="_blank" rel="noopener">
+          <img
+            src="/azkar-tracker-banner.jpg"
+            alt="Azkar Tracker: Zikr & Tasbih — Download on the App Store"
+            width="1280"
+            height="720"
+            loading="eager"
+          />
+        </a>
         <div class="featured__body">
           <div class="product__heading">
             <h2>Azkar Tracker</h2>
@@ -125,17 +127,28 @@ const upcoming = [
   }
 
   .featured {
-    display: flex;
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
     gap: 40px;
-    align-items: flex-start;
+    align-items: center;
   }
 
-  .featured__icon {
-    flex-shrink: 0;
-    width: 128px;
-    height: 128px;
-    border-radius: 28px;
-    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.15);
+  .featured__banner {
+    display: block;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
+    transition: transform 0.2s ease;
+  }
+
+  .featured__banner:hover {
+    transform: translateY(-2px);
+  }
+
+  .featured__banner img {
+    display: block;
+    width: 100%;
+    height: auto;
   }
 
   .featured__body {
@@ -221,14 +234,8 @@ const upcoming = [
 
   @media (max-width: 860px) {
     .featured {
-      flex-direction: column;
+      grid-template-columns: 1fr;
       gap: 24px;
-    }
-
-    .featured__icon {
-      width: 96px;
-      height: 96px;
-      border-radius: 22px;
     }
   }
 </style>
